@@ -1,0 +1,35 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500&display=swap");
+
+$light-primary: mat-palette($mat-blue, 900);
+$light-accent: mat-palette($mat-pink, A200, A100, A400);
+$light-warn: mat-palette($mat-yellow);
+
+$light-theme: mat-light-theme(
+  $light-primary,
+  $light-accent,
+  $light-warn
+);
+
+$dark-primary: mat-palette($mat-gray, 900);
+$dark-accent: mat-palette($mat-amber, A200, A100, A400);
+$dark-warn: mat-palette($mat-red);
+$dark-theme: mat-dark-theme(
+  $dark-primary,
+  $dark-accent,
+  $dark-warn
+);
+
+$custom-background-color: map_get($mat-grey, 700);
+$background: map-get($dark-theme, background);
+$background: map_merge($background, (background: $custom-background-color));
+$dark-theme: map_merge($dark-theme, (background: $background));
+
+$heading-font-family: "'Work Sans', sans-serif";
+$typography: mat-typography-config(
+  $display-4: mat-typography-level(112px, $font-family: $heading-font-family),
+  $display-3: mat-typography-level(56px, $font-family: $heading-font-family),
+  $display-2: mat-typography-level(45px, $font-family: $heading-font-family),
+  $display-1: mat-typography-level(34px, $font-family: $heading-font-family),
+  $headline: mat-typography-level(24px, $font-family: $heading-font-family),
+  $title: mat-typography-level(20px, $font-family: $heading-font-family),
+);

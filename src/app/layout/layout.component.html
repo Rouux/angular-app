@@ -1,0 +1,13 @@
+<ng-container>
+  <div [class.dark-theme]="isDark">
+    <app-top-bar
+      [isDark] = "isDark"
+      (toggleSidenav)="toggleSidenav()"
+      (toggleTheme)="toggleTheme()"
+    ></app-top-bar>
+    <app-sidenav  (closeSidenav)="toggleSidenav()" [open]="sidenav">
+      <router-outlet></router-outlet>
+    </app-sidenav>
+    <!-- <mat-toolbar class="example-footer">Footer</mat-toolbar> -->
+  </div>
+</ng-container>
