@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { LayoutComponent } from './layout.component';
 import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { ComponentsModule } from '../shared/components/components.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
   imports: [
     CommonModule,
     MaterialModule,
-    RouterModule
+    RouterModule,
+    ComponentsModule
   ],
   exports: [
     LayoutComponent

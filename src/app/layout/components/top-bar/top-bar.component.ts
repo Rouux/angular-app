@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Output, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { TimeInterval } from 'rxjs';
 
 @Component({
   selector: 'app-top-bar',

@@ -7,16 +7,14 @@
     <mat-icon>menu</mat-icon>
   </button>
   <span>My App</span>
-  <button
-    class="header-button"
-    mat-button
+  <app-text-animated-button
+    [otherText]="'Home'"
     (click)="navigateTo('/home')"
-  >
-    Home
-  </button>
-  <button class="header-button" mat-button (click)="navigateTo('/manual')">
-    Manual
-  </button>
+  >Home</app-text-animated-button>
+  <app-text-animated-button
+    [otherText]="'How to play'"
+    (click)="navigateTo('/manual')"
+  >Manual</app-text-animated-button>
   <span class="default-spacer"></span>
   <button
     mat-icon-button

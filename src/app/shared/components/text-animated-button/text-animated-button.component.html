@@ -1,0 +1,10 @@
+<button
+  class="header-button"
+  mat-button
+  (mouseenter)="onMouseEnter()"
+  (mouseleave)="onMouseLeave()"
+>
+  <div #content>
+    <ng-content></ng-content>
+  </div>
+</button>
