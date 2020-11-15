@@ -1,0 +1,16 @@
+@import "~@angular/material/theming";
+@mixin text-animated-button-component-theme($config-or-theme) {
+  $config: mat-get-color-config($config-or-theme);
+  $primary: map-get($config, primary);
+  // $accent: map-get($config, accent);
+  // $warn: map-get($config, warn);
+  // $foreground: map-get($config, foreground);
+  // $background: map-get($config, background);
+
+  .text-animated.mat-button.mat-button {
+    background: mat-color($primary, lighter, 0.2);
+    :hover {
+      background: mat-color($primary, lighter, 0.1);
+    }
+  }
+}

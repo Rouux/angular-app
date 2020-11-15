@@ -11,7 +11,6 @@ import { AnimateDivTextService } from '../../services/animate-div-text.service';
   selector: 'app-text-animated-button',
   templateUrl: './text-animated-button.component.html',
   styleUrls: ['./text-animated-button.component.scss'],
-  providers: [AnimateDivTextService],
 })
 export class TextAnimatedButtonComponent implements AfterViewInit {
   @Input() minWidth: number;

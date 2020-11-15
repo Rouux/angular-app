@@ -1,0 +1,9 @@
+@import '~@angular/material/theming';
+
+// import custom components themes
+@import './app/shared/components/text-animated-button/text-animated-button.component.theme.scss';
+
+// you only have to add additional components here (instead of in every theme class)
+@mixin custom-components-theme($theme) {
+  @include text-animated-button-component-theme($theme);
+}

@@ -1,10 +1,8 @@
-.mat-button {
+.text-animated.mat-button {
   padding: 0;
   border-radius: 0;
   margin-left: 2em;
-  background: rgba(200, 200, 200, 0.1);
   :hover {
-    background: rgba(100, 100, 100, 0.3);
     border-bottom: inset;
     border-width: 0.2em;
   }
