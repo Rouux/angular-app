@@ -9,12 +9,16 @@
   <span>My App</span>
   <app-text-animated-button
     [otherText]="'Home'"
+    [minWidth]="5"
     (click)="navigateTo('/home')"
-  >Home</app-text-animated-button>
+    >Home</app-text-animated-button
+  >
   <app-text-animated-button
-    [otherText]="'How to play'"
+    [otherText]="'How to play ?'"
+    [minWidth]="10"
     (click)="navigateTo('/manual')"
-  >Manual</app-text-animated-button>
+    >Manual</app-text-animated-button
+  >
   <span class="default-spacer"></span>
   <button
     mat-icon-button

@@ -6,13 +6,13 @@ import { arrayOfNumbers, isNil, randomString, replaceAt } from '../utils/utils';
   providedIn: 'root',
 })
 export class AnimateDivTextService {
-  private static _animationMap = new Map<number, NodeAnimation>();
+  private static readonly ANIMATION_MAP = new Map<number, NodeAnimation>();
 
   clearAnimation(id: number): void {
-    const animation = AnimateDivTextService._animationMap.get(id);
+    const animation = AnimateDivTextService.ANIMATION_MAP.get(id);
     if (!isNil(animation)) {
       animation.clearAll();
-      AnimateDivTextService._animationMap.delete(id);
+      AnimateDivTextService.ANIMATION_MAP.delete(id);
     }
   }
 
@@ -29,7 +29,7 @@ export class AnimateDivTextService {
       this._toFinalText(animation, final);
     }, this._halfDuration(animation));
 
-    AnimateDivTextService._animationMap.set(animation.id, animation);
+    AnimateDivTextService.ANIMATION_MAP.set(animation.id, animation);
     return animation.id;
   }
 
@@ -38,7 +38,7 @@ export class AnimateDivTextService {
   }
 
   private _findAnimationByNode(node: Node): NodeAnimation | undefined {
-    for (const animation of AnimateDivTextService._animationMap.values()) {
+    for (const animation of AnimateDivTextService.ANIMATION_MAP.values()) {
       if (animation.node.isEqualNode(node)) return animation;
     }
     return undefined;
@@ -49,13 +49,27 @@ export class AnimateDivTextService {
     const { node } = animation;
 
     while (node.textContent.length <= maxLength) {
-      node.textContent += ' ';
+      if (node.textContent.length % 2 === 0) {
+        node.textContent = node.textContent + ' ';
+      } else {
+        node.textContent = ' ' + node.textContent;
+      }
     }
     const indexesToReplace: number[] = arrayOfNumbers(node.textContent.length);
 
     animation.interval = setInterval(() => {
       this._randomizeOneCharacterOfTextContent(indexesToReplace, node);
     }, this._halfDuration(animation) / maxLength);
+  }
+
+  private _randomizeOneCharacterOfTextContent(
+    indexes: number[],
+    node: Node
+  ): void {
+    if (indexes.length !== 0) {
+      const index = indexes.pop();
+      node.textContent = replaceAt(node.textContent, index, randomString(1));
+    }
   }
 
   private _toFinalText(animation: NodeAnimation, final: string): void {
@@ -86,20 +100,6 @@ export class AnimateDivTextService {
       );
     } else {
       animation.clearAll();
-    }
-  }
-
-  private _randomizeOneCharacterOfTextContent(
-    indexes: number[],
-    node: Node
-  ): void {
-    const text = node.textContent;
-    if (indexes.length !== 0) {
-      const index = indexes.pop();
-      node.textContent = replaceAt(node.textContent, index, randomString(1));
-    } else {
-      const index = Math.floor(Math.random() * text.length);
-      node.textContent = replaceAt(node.textContent, index, randomString(1));
     }
   }
 

@@ -1,12 +1,13 @@
 import { isNil } from '../utils/utils';
 
 export class NodeAnimation {
+  private static ids = 0;
+
   node: Node;
   duration: number;
   timeout: NodeJS.Timeout;
   interval: NodeJS.Timeout;
 
-  private static ids = 0;
   private _id: number;
 
   constructor(node: Node, duration: number) {

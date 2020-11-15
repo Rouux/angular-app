@@ -2,10 +2,7 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
-  EventEmitter,
   Input,
-  OnInit,
-  Output,
   ViewChild,
 } from '@angular/core';
 import { AnimateDivTextService } from '../../services/animate-div-text.service';
@@ -17,10 +14,10 @@ import { AnimateDivTextService } from '../../services/animate-div-text.service';
   providers: [AnimateDivTextService],
 })
 export class TextAnimatedButtonComponent implements AfterViewInit {
-  public static readonly ANIMATION_CHARACTER_LENGTH = 10;
-
+  @Input() minWidth: number;
   @Input() otherText: string;
-  @Input() onEnterDuration = 800;
+  @Input() animationCharacterLength = 0;
+  @Input() onEnterDuration = 1000;
   @Input() onLeaveDuration = 500;
 
   private initialText: string;
@@ -36,6 +33,15 @@ export class TextAnimatedButtonComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.text = this._content.textContent;
+    if (this.animationCharacterLength === 0) {
+      setTimeout(() => {
+        this.animationCharacterLength = Math.max(
+          this.text.length,
+          this.otherText.length
+        );
+        this.minWidth = this.minWidth || this.animationCharacterLength;
+      });
+    }
   }
 
   onMouseEnter(): void {
@@ -59,7 +65,7 @@ export class TextAnimatedButtonComponent implements AfterViewInit {
     this._animateTextService.animate(
       this._content,
       this.otherText,
-      TextAnimatedButtonComponent.ANIMATION_CHARACTER_LENGTH,
+      this.animationCharacterLength,
       this.onEnterDuration
     );
   }
@@ -68,7 +74,7 @@ export class TextAnimatedButtonComponent implements AfterViewInit {
     this._animateTextService.animate(
       this._content,
       this.initialText,
-      TextAnimatedButtonComponent.ANIMATION_CHARACTER_LENGTH,
+      this.animationCharacterLength,
       this.initialText !== this.otherText ? this.onLeaveDuration : 0
     );
   }
