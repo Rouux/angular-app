@@ -33,13 +33,11 @@ export class TextAnimatedButtonComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.text = this._content.textContent;
     if (this.animationCharacterLength === 0) {
-      setTimeout(() => {
-        this.animationCharacterLength = Math.max(
-          this.text.length,
-          this.otherText.length
-        );
-        this.minWidth = this.minWidth || this.animationCharacterLength;
-      });
+      this.animationCharacterLength = Math.max(
+        this.text.length,
+        this.otherText.length
+      );
+      this.minWidth = this.minWidth || this.animationCharacterLength;
     }
   }
 

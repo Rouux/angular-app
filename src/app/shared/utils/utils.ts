@@ -1,3 +1,5 @@
+import { CHARACTERS } from './constants';
+
 export function isNil(arg: unknown): boolean {
   return arg === undefined || arg === null;
 }
@@ -14,16 +16,10 @@ export function replaceAt(
   );
 }
 
-const AVAILABLE_CHARACTERS =
-  'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-*/#?_!<>^ ';
-
-export function randomString(
-  length: number,
-  chars = AVAILABLE_CHARACTERS
-): string {
+export function randomString(length: number, chars = CHARACTERS): string {
   let text = '';
   for (let i = 0; i < length; i++) {
-    text += chars.charAt(Math.floor(Math.random() * chars.length));
+    text += chars.charAt(Math.floor(Math.random() * chars.length) + 1);
   }
   return text;
 }

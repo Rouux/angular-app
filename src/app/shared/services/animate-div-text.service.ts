@@ -1,6 +1,14 @@
 import { Injectable } from '@angular/core';
 import { NodeAnimation } from '../models/node-animation';
-import { arrayOfNumbers, isNil, randomString, replaceAt } from '../utils/utils';
+import { CHARACTERS } from '../utils/constants';
+import {
+  arrayOfNumbers,
+  isNil,
+  randomString,
+  replaceAt,
+} from '../utils/utils';
+
+const AVAILABLE_CHARACTERS = CHARACTERS + '+-*/#?_!<>^ ';
 
 @Injectable({
   providedIn: 'root',
@@ -68,7 +76,11 @@ export class AnimateDivTextService {
   ): void {
     if (indexes.length !== 0) {
       const index = indexes.pop();
-      node.textContent = replaceAt(node.textContent, index, randomString(1));
+      node.textContent = replaceAt(
+        node.textContent,
+        index,
+        randomString(1, AVAILABLE_CHARACTERS)
+      );
     }
   }
 
