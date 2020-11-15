@@ -7,8 +7,10 @@ export function isNil(arg: unknown): boolean {
 export function replaceAt(
   text: string,
   index: number,
-  replacement: string
+  replacement = ''
 ): string {
+  if (isNil(text) || isNaN(index) || index < 0 || index > text.length)
+    return text;
   return (
     text.substr(0, index) +
     replacement +
