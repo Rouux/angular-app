@@ -1,5 +1,5 @@
+import { ComponentsModule } from '../components.module';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { AnimateDivTextService } from '../../services/animate-div-text.service';
 
 import { TextAnimatedButtonComponent } from './text-animated-button.component';
 
@@ -9,10 +9,8 @@ describe('TextAnimatedButtonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TextAnimatedButtonComponent ],
-      providers: [AnimateDivTextService]
-    })
-    .compileComponents();
+      imports: [ComponentsModule],
+    }).compileComponents();
   });
 
   beforeEach(() => {
